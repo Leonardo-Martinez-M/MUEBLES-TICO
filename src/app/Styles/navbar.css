@@ -1,0 +1,112 @@
+.NavbarContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #1E1E1E;
+    color: #ffffff;
+    top: 0;
+    z-index: 1000;
+}
+
+.Logo {
+    display: flex;
+    align-items: center;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+
+.Links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+button {
+    width: 70px;
+    height: 50px;
+    background: #1E1E1E;
+    border: 2px solid #FFFFFF;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: color 0.3s;
+    color: #FFFFFF;
+}
+
+.IconoCabecera {
+    font-size: 25px;
+    color: #FFFFFF;
+    transition: transform 0.3s;
+}
+
+.activeIcono {
+    font-size: 25px;
+    color: #1E1E1E;
+    transition: transform 0.3s;
+}
+
+button:hover {
+    border: 2px solid #FFFFFF;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(255, 255, 255, 0.25);
+    color: #1E1E1E;
+}
+
+button:hover .IconoCabecera{
+    color: #1E1E1E;
+}
+
+.active {
+    background: #FFFFFF;
+    border: 2px solid #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(255, 255, 255, 0.25);
+    color: #1E1E1E;
+}
+
+.LogoutButton {
+    width: 80px;
+    height: 35px;
+    background-color: transparent;
+    color: #fff;
+    border: 2px solid #ffffff;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: monospace;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.LogoutButton:hover{
+    background-color: #C61515;
+    box-shadow: 0px 0px 10px rgba(198, 21, 21, 1);
+    color: #FFFFFF;
+}
+
+@media (max-width: 768px) {
+    .NavbarContainer {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .Logo {
+        display: flex;
+        align-items: center;
+    }
+
+    .LogoutButton {
+        width: 80px;
+        height: 35px;
+        margin-top: 10px;
+        margin-bottom: 20px;
+    }
+
+    .Links {
+        margin-top: 20px;
+        width: 100%;
+        justify-content: center;
+        margin-bottom: 0;
+    }
+}

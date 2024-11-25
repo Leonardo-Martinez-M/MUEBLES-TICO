@@ -1,0 +1,60 @@
+.FooterContainer {
+    background-color: #1E1E1E;
+    color: #FFFFFF;
+    text-align: center;
+    padding: 30px;
+    bottom: 0;
+    height: auto;
+}
+
+.TituloFooter {
+    margin-top: 0;
+    margin-bottom: 30px;
+    font-size: 30px;
+}
+
+.ContactInfo {
+    display: flex;
+    flex-direction: row; /* Los div estarán uno al lado del otro */
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; /* Permite que los divs se ajusten en múltiples líneas si el espacio es insuficiente */
+    gap: 100px; /* Espacio entre los contenedores */
+    max-width: 100%;
+}
+
+.ContactItem {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.1rem;
+}
+
+.FooterText {
+    margin-top: 20px;
+    font-size: 15px;
+    color: #bdc3c7;
+}
+
+.IconoFooter{
+    font-size: 25px;
+    color: #0C61FF ;
+}
+@media (max-width: 1324px) {
+    .ContactInfo{
+        gap: 50px;
+    }
+    .IconoFooter {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 768px){
+    .ContactInfo{
+        gap: 20px;
+    }
+    .IconoFooter {
+        font-size: 20px;
+    }
+}
