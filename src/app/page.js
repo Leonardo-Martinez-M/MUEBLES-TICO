@@ -24,12 +24,12 @@ export default function Home() {
     setError('');
 
     try {
-      const response = await fetch('http://127.0.0.1:5000/user/verify', {
+      const url = `http://127.0.0.1:5000/user/verify?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`;
+      const response = await fetch(url, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ email, password }), 
         });
 
         const data = await response.json();
@@ -43,7 +43,7 @@ export default function Home() {
           setError(errorMessage); // Establece el mensaje de error en el estado
           alert(errorMessage); // Muestra la alerta con el mensaje de error
         }
-        
+
       } catch (error) {
         const errorMessage = 'Hubo un problema con la conexión al servidor';
         setError(errorMessage); // Establece el mensaje de error en el estado
