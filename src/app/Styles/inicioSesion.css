@@ -57,6 +57,13 @@ label {
     margin-left: 80px;
 }
 
+.labelRegistro {
+    display: block;
+    text-align: left;
+    font-size: 16px;
+    margin-left: 80px;
+}
+
 .inputField {
     width: 300px;
     height: 35px;
@@ -67,11 +74,22 @@ label {
     font-size: 16px;
 }
 
-.inputField:focus {
+.inputRegistro {
+    width: 300px;
+    height: 30px;
+    border-radius: 20px;
+    border: 3px solid #1E1E1E;
+    font-family: 'Courier Prime', monospace;
+    padding-left: 15px;
+    font-size: 14px;
+}
+
+.inputField:focus, .inputRegistro:focus {
     border-color: #0044cc;
     box-shadow: 0 0 5px #0044cc;
     outline: none;
 }
+
 
 .loginButton {
     width: 130px;
@@ -140,6 +158,10 @@ label {
         width: 70%; /* Reduce el ancho del input */
     }
 
+    .inputRegistro{
+        width: 70%;
+    }
+
     .loginButton {
         width: 130px; /* Ajusta el ancho del botón */
         height: 55px;
@@ -147,5 +169,9 @@ label {
 
     label {
         margin-left: 15%; /* Reduce la separación */
+    }
+
+    .labelRegistro {
+        margin-left: 15%;
     }
 }

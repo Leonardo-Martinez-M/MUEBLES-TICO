@@ -6,7 +6,9 @@ import './Styles/inicioSesion.css';
 
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import Loading from './components/Loading';
+import Loading from './components/loading';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export default function Home() {
@@ -14,14 +16,27 @@ export default function Home() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
 
   const router = useRouter(); 
 
   const handleInicio = async (e) => {
     e.preventDefault(); //Evita la recarga de la pagina
     setLoading(true); // Activa loading
-    setError('');
+
+      // Validación de campos vacíos
+    if (!email || !password) {
+      toast.warning('Por favor, llena todos los campos', {
+        position: 'top-right',
+        autoClose: 2000, 
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        theme: 'dark',
+      });
+      setLoading(false);
+      return;
+    }
 
     try {
       const url = `http://127.0.0.1:5000/user/verify?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`;
@@ -32,23 +47,39 @@ export default function Home() {
           },
         });
 
-        const data = await response.json();
-
         if (response.ok) {
-          console.log('Inicio de sesión exitoso:', data);
-          router.push('/home'); //Inicio correcto te dirije al home 
+          const data = await response.json(); 
+
+          console.log('Resultado del Endpoint de Inicio de Sesión:', data);
+
+          // Almacena los datos del usuario en localStorage
+          localStorage.setItem('userData', JSON.stringify(data));
+        
+          // Redirige a la página principal
+          router.push('/home');
 
         } else {
           const errorMessage = data.message || 'Credenciales incorrectas'; // Mensaje de error
-          setError(errorMessage); // Establece el mensaje de error en el estado
-          alert(errorMessage); // Muestra la alerta con el mensaje de error
+          toast.error(errorMessage, {
+            position: 'top-right',
+            autoClose: 3000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: false,
+            theme: 'dark',
+          });
         }
-
       } catch (error) {
-        const errorMessage = 'Hubo un problema con la conexión al servidor';
-        setError(errorMessage); // Establece el mensaje de error en el estado
-        alert(errorMessage); // Muestra la alerta con el mensaje de error
-
+        toast.error('Hubo un problema con la conexión al servidor', {
+          position: 'top-right',
+          autoClose: 3000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: false,
+          theme: 'dark',
+        });
       } finally {
         setLoading(false);
       }
@@ -56,12 +87,14 @@ export default function Home() {
 
   return (
     <>
+      <ToastContainer/>
       {loading && <Loading/>}
       <div className="loginContainer">
         <div className="logoSection">
           <Image src="/imagenes/Logo.png"
           alt="Muebles-TicoLogo" 
-          width={300} height={300} priority
+          width={300} height={300} 
+          priority
           className="logo" />
         </div>
         <div className="formSection">
