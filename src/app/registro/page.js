@@ -4,6 +4,7 @@ import Link from 'next/link';
 import '../Styles/inicioSesion.css'
 
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Loading from '../components/loading';
@@ -16,6 +17,8 @@ const Registro = () => {
   const [email, setEmail] = useState('');
   const [password_user, setPasswordUser] = useState('');
   const [loading, setLoading] = useState(false);
+
+  const router = useRouter(); 
 
   const handleRegister = async (e) => {
     e.preventDefault(); // Evita que se recarge 
@@ -150,7 +153,6 @@ const Registro = () => {
           <input 
             type="text" 
             className="inputRegistro" 
-            pattern="\d{10}" 
             placeholder="Numero telefónico"
             maxLength="10" 
             value={cellphone}

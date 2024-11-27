@@ -125,7 +125,7 @@ export default function Home() {
               Iniciar
             </button>
             
-          <p className="registerLink" style={{marginTop: '30px'}}>¿No tienes cuenta?
+          <p className="registerLink" style={{marginTop: '30px', color:'#1e1e1e'}}>¿No tienes cuenta?
             <br/> <Link href="/registro">Regístrate</Link> </p>
         </div>
       </div>

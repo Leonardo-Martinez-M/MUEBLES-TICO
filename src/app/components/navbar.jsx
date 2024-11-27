@@ -27,7 +27,7 @@ const Navbar = () => {
         width={100} 
         height={100} 
         loading='lazy'
-        className="logo"  style={{borderRadius: '60px'}}/>
+        className="Logo"  style={{borderRadius: '60px'}}/>
       </div>
 
       <div className='Links'>
@@ -54,7 +54,9 @@ const Navbar = () => {
       <button className='LogoutButton'
         onClick={() => {
           localStorage.clear();
-          handleNavigation('/');}}>Salir
+          window.location.reload();  // Recarga la página
+          //handleNavigation('/');
+          }}>Salir
       </button>
     </div>
   );

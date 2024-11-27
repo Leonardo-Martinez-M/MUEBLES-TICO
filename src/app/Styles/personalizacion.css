@@ -1,0 +1,216 @@
+.seccionUnoMateriales {
+    height: 100PX;
+    background-color: #1E1E1E;
+    color: #FFFFFF;
+    display: flex; /* Utilizamos flexbox para centrar el contenido */
+    flex-direction: column; /* Organiza los elementos en columna */
+    justify-content: center; /* Centra verticalmente */
+    align-items: center; /* Centra horizontalmente */
+    text-align: center; /* Centra el texto dentro del div */
+    padding: 20px; /* Espaciado interno */
+} 
+
+h1 {
+    font-weight: 400;
+    font-size: 32px;
+}
+
+h4 {
+    font-weight: 800;
+    font-size: 25px;
+    color: #1E1E1E;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.seccionTres {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+  gap: 20px; /* Espacio entre los elementos */
+}
+
+.filasTres {
+    display: flex;
+    flex-direction: row; /* Los div estarán uno al lado del otro */
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; /* Permite que los divs se ajusten en múltiples líneas si el espacio es insuficiente */
+    gap: 25px; /* Espacio entre los contenedores */
+    max-width: 100%;
+    margin-bottom: 40px;
+}
+
+.contenedorMateriales {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 250px;
+    height: 300px;
+    background: linear-gradient(to top, #000000, #1E1E1E);
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.50);
+    border-radius: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.ImagenMaterialeas {
+  max-width: 80%; /* Imagen responsiva */
+  height: auto; /* Mantiene proporción */
+  border-radius: 10px; /* Bordes redondeados en la imagen */
+  margin: 10px; /* Separación entre imagen y texto */
+}
+
+.materialInfo p {
+    font-weight: 200;
+    font-size: 16px;
+    color: #ffffff;
+    text-align: left;
+}
+
+.materialInfo h5 {
+    font-weight: 400;
+    font-size: 18px;
+    color: #ffffff;
+    text-align: center;
+    margin: 0;
+}
+
+.Dinero {
+    font-weight: 200;
+    font-size: 18px;
+    color: #fffb0c;
+    text-align: center;
+}
+
+.select-material {
+    padding: 10px;
+    font-size: 18px;
+    border: 3px solid #1E1E1E;
+    border-radius: 20px;
+    background-color: #ffffff;
+    color: #1E1E1E;
+    width: 400px;/* Puedes ajustar el ancho según lo necesites */
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.select-material:focus {
+    border-color: #0044cc;/* Borde azul cuando se enfoca */
+    background-color: #1E1E1E;/* Fondo ligeramente azul */
+    box-shadow: 0 0 10px #1E1E1E;
+    color: #FFFFFF;
+    outline: none;
+}
+
+/* Estilo para las opciones dentro del select */
+.select-material option {
+    padding: 10px 12px;
+    font-size: 16px;
+}
+
+/* Estilo para la opción seleccionada */
+.select-material option:checked {
+    background-color: #1E1E1E;
+}
+
+.inputMedidas{
+    margin-top: 5px;
+    width: 350px;
+    height: 35px;
+    border-radius: 20px;
+    border: 3px solid #1E1E1E;
+    font-family: 'Courier Prime', monospace;
+    font-size: 18px;
+    text-align: center;
+}
+
+.inputMedidas:focus {
+    border-color: #0044cc;
+    box-shadow: 0 0 5px #0044cc;
+    outline: none;
+}
+
+.labelMedidas {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.botonCalcular{
+    width: 280px;
+    height: 60px;
+    background-color: #fffb0c;
+    color: #1E1E1E;
+    border: none;
+    border-radius: 20px;
+    font-size: 20px;
+    font-weight: 1000;
+    font-family: 'Courier Prime', monospace;
+    border: 3px solid #1E1E1E;
+    box-shadow: 0 0 10px #1E1E1E
+}
+
+.botonCalcular:hover {
+    border: 3px solid #1E1E1E;
+    background-color: #1E1E1E;
+    color: #fffb0c;
+    font-weight: 1000;
+    box-shadow: 0 0 10px #1E1E1E
+}
+
+.botonComprar {
+    width: 150px;
+    height: 60px;
+    background-color: #00d134;
+    color: #1E1E1E;
+    border: none;
+    border-radius: 20px;
+    font-size: 20px;
+    font-weight: 1000;
+    font-family: 'Courier Prime', monospace;
+    border: 3px solid #1E1E1E;
+    box-shadow: 0 0 10px #1E1E1E
+}
+
+.botonComprar:hover {
+    border: 3px solid #1E1E1E;
+    background-color: #1E1E1E;
+    color: #00d134;
+    font-weight: 1000;
+    box-shadow: 0 0 10px #1E1E1E
+}
+
+@media (max-width: 768px){
+    .seccionUnoMateriales{
+        height: 90px;
+        margin-top: 0;
+    }
+
+    h1{
+        font-size: 25px;
+        margin-top: 0;
+    }
+
+    h4{
+        padding-left: 30px;
+        padding-right: 30px;
+        font-size: 20px;
+    }
+
+    .select-material{
+        font-size: 16px;
+        width: 300px;/* Puedes ajustar el ancho según lo necesites */
+    }
+
+    .select-material option {
+    font-size: 14px;
+    }
+
+    .inputMedidas {
+        width: 250px;
+    }
+
+}

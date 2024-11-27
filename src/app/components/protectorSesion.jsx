@@ -4,7 +4,7 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 
-const withAuth = (WrappedComponent) => {
+const protectorSesion = (WrappedComponent) => {
   return (props) => {
     const router = useRouter();
 
@@ -19,4 +19,4 @@ const withAuth = (WrappedComponent) => {
   };
 };
 
-export default withAuth;
+export default protectorSesion;
