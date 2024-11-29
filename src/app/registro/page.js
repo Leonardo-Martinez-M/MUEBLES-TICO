@@ -24,7 +24,6 @@ const Registro = () => {
     e.preventDefault(); // Evita que se recarge 
     setLoading(true); // Muestra el loader
 
-// Validación de campos vacíos
     if (!name || !lastname || !cellphone || !email || !password_user) {
       toast.warning('Por favor, llena todos los campos', {
         position: 'top-right',
@@ -85,7 +84,7 @@ const Registro = () => {
 
       } else {
         const errorData = await response.json();
-        const errorMessage = errorData.message || 'Error al registrar el usuario';
+        const errorMessage = errorData.message || 'Error al registrar el usuario, intentelo más tarde.';
         toast.error(errorMessage, {
           position: 'top-right',
           autoClose: 3000,
@@ -109,12 +108,12 @@ const Registro = () => {
       });
 
     } finally {
-      setLoading(false); // Oculta el loader
+      setLoading(false);
     }
   };
 
   return (
-    <>
+    <div className='body-black'>
       <ToastContainer />
       {loading && <Loading />}
       <div className="loginContainer">
@@ -126,7 +125,7 @@ const Registro = () => {
           </img>
         </div>
         <div className="formSection">
-          <h2 style={{marginTop:'20px'}}>Registro</h2>
+          <h2 className='TituloLogin' style={{marginTop:'20px'}}>Registro</h2>
 
           <label style={{marginTop:'10px'}} className='labelRegistro '>
             Nombre:</label>
@@ -170,7 +169,7 @@ const Registro = () => {
             required            
             />
           <label style={{marginTop:'10px'}} className='labelRegistro '>
-            Contraseña:</label>
+             Contraseña:</label>
           <input 
             type="password" 
             className="inputRegistro"
@@ -191,7 +190,7 @@ const Registro = () => {
           </p>
         </div>
       </div>
-    </>
+    </div>
     )
 }
 

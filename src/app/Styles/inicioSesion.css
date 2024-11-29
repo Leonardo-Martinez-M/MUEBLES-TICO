@@ -1,13 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap');
 
-body {
-    background: #1E1E1E;
+.body-black {
     display: flex;
     justify-content: center;
     align-items: center;
     font-family: 'Courier Prime', monospace;
     min-height: 100vh;
-    margin: 0;
+    top: 0;
 }
 
 .loginContainer {
@@ -23,10 +22,11 @@ body {
     align-items: center;
     justify-content: center;
     width: 450px;
-    height: 500px;
-    border: 3px solid #ffffff;
+    height: 520px;
+    border: 3px solid #1E1E1E;
     background-color: #1E1E1E;
     border-radius: 30px 0 0 30px;
+    box-shadow: 0px 0px 30px rgba(30, 30, 30, 0.5);
 }
 
 .logo {
@@ -37,13 +37,15 @@ body {
 
 .formSection {
     width: 450px;
-    height: 506px;
+    height: 520px;
     background-color: #ffffff;
     border-radius: 0 30px 30px 0;
     text-align: center;
+    border: 3px solid #1E1E1E;
+    box-shadow: 0px 0px 30px rgba(30, 30, 30, 0.5);
 }
 
-h2 {
+.TituloLogin {
     font-weight: bold;
     font-size: 32px;
     margin: 0;
@@ -110,27 +112,44 @@ label {
     box-shadow: 0 0 10px #1E1E1E
 }
 
+.registerLink {
+    font-weight: 600;
+    color: #1E1E1E;
+    font-size: 18px;
+    text-align: center;
+}
+
 .registerLink a {
-    font-weight: 400;
+    font-weight: 600;
     color: #0044cc;
     text-decoration: underline
 }
 
 
-@media screen and (max-width: 1024px) {
+
+@media screen  and (max-width: 1024px) {
+    .body-black {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: stretch;
+        font-family: 'Courier Prime', monospace;
+        min-height: 100vh;
+        top: 0;
+        padding: 40px 60px;
+    }
+
     .loginContainer {
-        margin-top: 20px;
-        margin-bottom: 20px;
-        flex-direction: column; /* Cambia de horizontal a vertical */
-        width: 90%; /* Usa un ancho relativo para adaptarse */
-        height: auto; /* Ajusta la altura automáticamente */
+        flex-direction: column;
+        width: 100%; 
+        height: auto; 
     }
 
     .logoSection,
     .formSection {
-        width: 100%; /* Cada sección ocupa el ancho completo */
-        height: auto; /* Ajusta la altura */
-        border-radius: 30px; /* Ajusta los bordes redondeados */
+        width: 100%; 
+        height: auto; 
+        border-radius: 30px; 
     }
 
     .logoSection {
@@ -139,23 +158,23 @@ label {
 
     .logo {
         margin-top: 20px;
-        width: 250px;
-        height: 250px;
+        width: 220px;
+        height: 220px;
         border-radius: 50%;
         margin-bottom: 20px;
     }
 
     .formSection {
         border-radius: 0 0 30px 30px; /* Borde redondeado inferior */
-        border: 3px solid #ffffff;
     }
 
-    h2 {
-        font-size: 28px; /* Reduce el tamaño del texto */
+    .TituloLogin {
+        font-size: 25px; /* Reduce el tamaño del texto */
     }
 
     .inputField {
         width: 70%; /* Reduce el ancho del input */
+        font-size: 14px;
     }
 
     .inputRegistro{
@@ -168,10 +187,17 @@ label {
     }
 
     label {
-        margin-left: 15%; /* Reduce la separación */
+        margin-left: 17%; /* Reduce la separación */
+        font-size: 18px;
     }
 
     .labelRegistro {
-        margin-left: 15%;
+        margin-left: 17%;
+        margin-bottom: 5px;
+    }
+
+    .registerLink{
+        margin-bottom: 40px;
+        font-size: 16px;
     }
 }

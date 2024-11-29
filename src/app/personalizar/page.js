@@ -3,15 +3,16 @@
 import React, { useState, useEffect} from 'react';
 import Cabecera from '../components/Navbar';
 import PiePagina from '../components/Footer'
+import { useRouter } from 'next/navigation';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import '../Styles/globals.css'
 import '../Styles/personalizacion.css'
 import Loading from '../components/loading';
 
-
-
 export default function personalizar() {
+  
+  const router = useRouter();
   const [materiales, setMateriales] = useState([]);
   const [selectedMaterialId, setSelectedMaterialId] = useState(null);
   const [diseños, setDiseños] = useState([]);
@@ -21,6 +22,15 @@ export default function personalizar() {
   const [ancho, setAncho] = useState(0); // Estado para el ancho de la cocina
   const [alto, setAlto] = useState(0); // Estado para el alto de la cocina
   const [costoEstimatado, setCostoEstimado] = useState(0); // Estado para el costo estimado
+  const [selectedColor, setSelectedColor] = useState("#ffffff"); // Estado para el color
+
+  // Redirección si no está autenticado
+  useEffect(() => {
+    const usuario = JSON.parse(localStorage.getItem('userData'));
+    if (!usuario || !usuario.email || !usuario.name) {
+      router.push('/');
+    }
+  }, [router]);
 
   // Obtener los materiales desde el endpoint
   useEffect(() => {
@@ -70,13 +80,18 @@ export default function personalizar() {
     setSelectedDiseñoId(e.target.value); // Cambiar el estado con el valor del select
   };
 
+  // Cambiar el valor del color al seleccionar uno
+  const handleColorChange = (e) => {
+    setSelectedColor(e.target.value); // Actualizar el color seleccionado
+  };
+
   const handleCalcular = () => {
     if (
       !largo || largo <= 0 ||
       !alto || alto <= 0 ||
       !ancho || ancho <= 0 ||
       !selectedMaterialId ||
-      !selectedDiseñoId
+      !selectedDiseñoId 
     ) {
       toast.warning("Por favor, rellene todos los campos con valores válidos y seleccione material y diseño.", {
         position: 'top-right',
@@ -127,18 +142,32 @@ export default function personalizar() {
     };
 
   return (
-    <>
+    <div className='cuerpoNormal'>
       <ToastContainer />
       {loading && <Loading />}
-      <div>
-        <Cabecera>
-        </Cabecera>
+      <Cabecera>
+      </Cabecera>
         <div className='seccionUnoMateriales'>
           <h1>
             ¿Ya estas preparado para la personalización de tu cocina integral?
           </h1>
         </div>
         <div className='seccionTres'>
+          <h4>
+            COLORES
+          </h4>
+          <div className='filasTres'>
+            <div className="contenedorInputColor">
+              <input
+                type="color"
+                value={selectedColor}
+                onChange={handleColorChange}
+                className="inputcolor"
+              />
+              <h4 style={{color:'#FFFFFF', fontSize:'20px'}}>Color seleccionado: <br></br>{selectedColor}</h4>
+            </div>
+          </div>
+
           <h4>
             MATERIALES
           </h4>
@@ -253,6 +282,7 @@ export default function personalizar() {
                 className='botonComprar'
                 onClick={() => {
                   const confirmarCompra = window.confirm(                    `El presupuesto estimado es de ${costoEstimatado} MXN. \n\n` +
+                    `El color: ${selectedColor} \n\n` +
                     `Medidas:\n- Largo: ${largo} m\n- Ancho: ${ancho} m\n- Alto: ${alto} m\n\n` +
                     `Material seleccionado: ${materiales.find(m => m.id === parseInt(selectedMaterialId))?.material || 'N/A'}\n` +
                     `Diseño seleccionado: ${diseños.find(d => d.id === parseInt(selectedDiseñoId))?.design || 'N/A'}\n\n` +
@@ -264,16 +294,14 @@ export default function personalizar() {
                   }
                 }}                
                 >
-                Comprar
+                Continuar
               </button>
               </div>
             </>
           )}         
         </div>
-
         <PiePagina>
         </PiePagina>
-      </div>
-    </>
+    </div>
   );
 }

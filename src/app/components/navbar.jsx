@@ -55,7 +55,6 @@ const Navbar = () => {
         onClick={() => {
           localStorage.clear();
           window.location.reload();  // Recarga la página
-          //handleNavigation('/');
           }}>Salir
       </button>
     </div>

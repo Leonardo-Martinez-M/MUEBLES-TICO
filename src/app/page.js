@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import './Styles/inicioSesion.css';
+import './Styles/globals.css'
 
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -86,7 +87,7 @@ export default function Home() {
   };
 
   return (
-    <>
+    <div className='body-black'>
       <ToastContainer/>
       {loading && <Loading/>}
       <div className="loginContainer">
@@ -98,7 +99,7 @@ export default function Home() {
           className="logo" />
         </div>
         <div className="formSection">
-          <h2 style={{marginTop:'50px'}}>Inicio de sesión</h2>
+          <h2 className='TituloLogin' style={{marginTop:'50px'}}>Inicio de sesión</h2>
           <label style={{marginTop:'40px'}}>Correo:</label>
           <input 
             type="email" 
@@ -129,6 +130,6 @@ export default function Home() {
             <br/> <Link href="/registro">Regístrate</Link> </p>
         </div>
       </div>
-    </>
+    </div>
   );
 }

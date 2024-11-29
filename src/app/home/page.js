@@ -4,6 +4,7 @@ import '../Styles/globals.css'
 import '../Styles/home.css'
 import Cabecera from '../components/Navbar';
 import PiePagina from '../components/Footer'
+import { useEffect } from 'react';
 import Image from 'next/image';
 import {FaRegEdit} from 'react-icons/fa';
 import { useRouter} from 'next/navigation'; 
@@ -11,16 +12,32 @@ import { FcInTransit } from "react-icons/fc";
 import { FcOk } from "react-icons/fc";
 import { FcLike } from "react-icons/fc";
 import { FcIdea } from "react-icons/fc";
+import Loading from '../components/loading';
+import { useState } from 'react';
+
 
 export default function inicio() {
   const router = useRouter();
+  const [loading, setLoading] = useState(true);
+
+  // Redirección si no está autenticado
+  useEffect(() => {
+    const usuario = JSON.parse(localStorage.getItem('userData'));
+    if (!usuario || !usuario.email || !usuario.name) {
+      router.push('/');
+    }
+    else {
+      setLoading(false);
+    }
+  }, [router]);
 
   const handleNavigation = (path) => {
     router.push(path);
   };
 
   return (
-    <div>
+    <>
+      {loading && <Loading />}
       <Cabecera>
       </Cabecera>
       <div className='seccionUno'>
@@ -91,7 +108,7 @@ export default function inicio() {
       </div>
       <PiePagina>
       </PiePagina>
-    </div>
+    </>
   );
 }
 

@@ -5,33 +5,117 @@ import '../Styles/globals.css'
 import '../Styles/confirmacion.css'
 import React from 'react';
 import { useRouter } from 'next/navigation';
-
+import { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Loading from '../components/loading';
+import { useEffect } from 'react';
 
 export default function confirmarCompra() {
 
     const router = useRouter(); // Hook para manejar la navegación
+    const [loading, setLoading] = useState(true);
+
+    // Redirección si no está autenticado
+    useEffect(() => {
+    const usuario = JSON.parse(localStorage.getItem('userData'));
+        if (!usuario || !usuario.email || !usuario.name) {
+            router.push('/');
+        }
+        else {
+            setLoading(false);
+        }
+    }, [router]);
+    
+    const validateInputs = () => {
+        const inputs = document.querySelectorAll('.inputUbicacion');
+        for (const input of inputs) {
+            if (!input.value.trim()) {
+                toast.error(`El campo "${input.placeholder}" no puede estar vacío.`,
+                {
+                    position: 'top-right',
+                    autoClose: 2000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: false,
+                    theme: 'dark',
+                }
+                );
+                return false;
+            }
+            if (input.type === 'text' && input.value.trim().length < 3) {
+                toast.error(`El campo "${input.placeholder}" debe tener al menos 3 caracteres.`,{
+                    position: 'top-right',
+                    autoClose: 2000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: false,
+                    theme: 'dark',
+                }
+                );
+                return false;
+            }
+            if (input.type === 'number' && input.value.trim().length > input.maxLength) {
+                toast.error(`El campo "${input.placeholder}" excede el límite permitido de caracteres.`,{
+                    position: 'top-right',
+                    autoClose: 2000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: false,
+                    theme: 'dark',
+                }
+                );
+                return false;
+            }
+        }
+        return true;
+    };
 
     const handleConfirmarCompra = async () => {
-    const usuario = JSON.parse(localStorage.getItem('userData'));
-    if (!usuario || !usuario.email || !usuario.name) {
-        alert('No se encontraron los datos del usuario en el localStorage.');
+        if (!validateInputs()) return;
+
+        const usuario = JSON.parse(localStorage.getItem('userData'));
+            if (!usuario || !usuario.email || !usuario.name) {
+                toast.warning('No se encontraron los datos del usuario en el localStorage.', 
+                {
+                    position: 'top-right',
+                    autoClose: 2000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: false,
+                    theme: 'dark',
+                });
+                setTimeout(() => {
+                    router.push('/'); 
+                }, 2100); 
         return;
     }
-
     // Construir la URL con los parámetros
-    const url = `http://127.0.0.1:5000/mail?mailrec=${encodeURIComponent(
-        usuario.email
-    )}&name=${encodeURIComponent(usuario.name)}`;
+    const url = `http://127.0.0.1:5000/mail?mailrec=${encodeURIComponent(usuario.email)}&name=${encodeURIComponent(usuario.name)}`;
+
 
     try {
-        const response = await fetch(url, {
-        method: 'POST',
-        });
+        setLoading(true);
+        const response = await fetch(url, {method: 'POST',});
 
         if (response.ok) {
-        alert('Compra confirmada y correo enviado exitosamente.');
-        router.push('/home'); // Redirigir a la página principal
-
+            toast.success('En breve recibira un correo de confirmación.', 
+                {
+                    position: 'top-right',
+                    autoClose: 2000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: false,
+                    theme: 'dark',
+            });
+            setTimeout(() => {
+                router.push('/'); 
+            }, 2100); 
         } else {
         const errorResponse = await response.json();
         console.error('Respuesta del servidor:', errorResponse);
@@ -40,12 +124,15 @@ export default function confirmarCompra() {
     } catch (error) {
         console.error('Error:', error);
         alert('Error al conectar con el servidor.');
+    } finally {
+      setLoading(false);
     }
     };
 
   return (
-    <>
-        <div>
+        <>
+            <ToastContainer />
+            {loading && <Loading />}
             <div className='seccionUnoConfirmacion'>
                 <h1>
                     Para terminar la compra, le informamos que, por el momento, 
@@ -90,7 +177,7 @@ export default function confirmarCompra() {
                     </div>
                     <div className='preguntas'>
                         <label className='labelUbicacion'>
-                            Numero:
+                            Numero de domiicilio:
                         </label>
                         <input
                             className='inputUbicacion'
@@ -106,7 +193,7 @@ export default function confirmarCompra() {
                         <input
                             className='inputUbicacion'
                             maxLength="5" 
-                            type="text"
+                            type="number"
                             placeholder="Introduce tu Codigo Postal"
                         />
                     </div>
@@ -139,7 +226,6 @@ export default function confirmarCompra() {
             </div>
             <PiePagina>
             </PiePagina>
-        </div>
-    </>
+        </>
   );
 }

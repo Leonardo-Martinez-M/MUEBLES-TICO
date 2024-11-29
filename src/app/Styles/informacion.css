@@ -1,0 +1,120 @@
+.seccionUno {
+    height: 200PX;
+    background-color: #1E1E1E;
+    color: #FFFFFF;
+    display: flex; /* Utilizamos flexbox para centrar el contenido */
+    flex-direction: column; /* Organiza los elementos en columna */
+    justify-content: center; /* Centra verticalmente */
+    align-items: center; /* Centra horizontalmente */
+    text-align: center; /* Centra el texto dentro del div */
+    padding: 20px; /* Espaciado interno */
+} 
+
+h1 {
+    font-weight: 400;
+    font-size: 32px;
+}
+
+h2 {
+    font-weight: 800;
+    font-size: 18px;
+    background: #ffffff;
+    color: #1E1E1E;
+    padding: 20PX;
+    border-radius: 10PX;
+}
+
+.TituInfor {
+    font-weight: 800;
+    font-size: 30px;
+    color: #1E1E1E;
+    text-align: center;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.textoInf {
+    font-weight: 200;
+    font-size: 18px;
+    color: #ffffff;
+    text-align: justify;
+}
+
+.tituloInformacion{
+    font-weight: 200;
+    font-size: 35px;
+    color: #ffffff;
+}
+
+
+.seccionDosIn{
+  display: flex;
+  justify-content: center; /* Centra horizontalmente los elementos */
+  align-items: center; /* Centra verticalmente los elementos */
+  background: linear-gradient(to top, #1e1e1e, #000000); /* Degradado de arriba hacia abajo */
+  border-radius: 40px; /* Bordes redondeados */
+  padding: 30px ;
+  margin: 50px auto; /* Centra el contenedor y añade separación */
+  max-width: 900px; /* Máximo ancho del contenedor */
+  text-align: center; /* Centrado de texto */
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.50);
+}
+
+.ImagenInformacion {
+  max-width: 100%; /* Imagen responsiva */
+  height: auto; /* Mantiene proporción */
+  border-radius: 30px; /* Bordes redondeados en la imagen */
+  margin: 10px; /* Separación entre imagen y texto */
+}
+
+.seccionDosTexto {
+  flex: 1; /* Permite que el texto ocupe el espacio disponible */
+  padding: 40px; /* Espaciado interno */
+  min-width: 250px; /* Tamaño mínimo para mantener legibilidad */
+  color: #FFFFFF;
+}
+
+/* Responsividad adicional */
+
+@media (max-width: 1024px) {
+    .seccionDosIn {
+        flex-wrap: wrap;/* Permite que los elementos se adapten en pantallas pequeñas */
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .seccionUno {
+        height: 180px;
+        margin-top: 0;
+    }
+
+    h1 {
+        font-size: 25px;
+        margin-top: 0;
+    }
+
+    h2 {
+        font-size: 16px;
+    }
+
+    .TituInfor {
+        padding-left: 30px;
+        padding-right: 30px;
+        font-size: 25px;
+    }
+
+    .seccionDosIn{
+        flex-wrap: wrap; /* Permite que los elementos se adapten en pantallas pequeñas */
+        margin-left: 20px;
+        margin-right: 20px;
+        margin-bottom: 50px;
+    }
+
+    .ImagenInformacion{
+        width: 300px;
+        height: auto;
+        margin-bottom: 20px;
+    }
+}
